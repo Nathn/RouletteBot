@@ -9,6 +9,7 @@ const {
     PREFIX
 } = require("./config");
 const ms = require("ms");
+date1 = new Date();
 
 
 client.on("message", async message => {
@@ -90,12 +91,64 @@ client.on("message", async message => {
                 console.log(proba + " ban win")
             };
         }, 1500)
+    } else if (command === 'ping') {
+        message.channel.send(`Pong ! ${Math.round(client.ping)}ms`);
+    } else if (command === 'help') {
+        date2 = new Date();
+        diff = dateDiff(date1, date2);
+        const helpEmbed = {
+            color: 0x3333ff,
+            title: 'Available commands',
+            author: {
+                name: 'RouletteBot',
+                icon_url: 'https://i.imgur.com/sN3erxO.png',
+                url: 'https://github.com/Nathn/RouletteBot',
+            },
+            fields: [{
+                    name: 'rr!kick {value}',
+                    value: '1 chance out of {value} to get kicked out of the server. Default value : 6',
+                    inline: false,
+                },
+                {
+                    name: 'rr!ban {value}',
+                    value: '1 chance out of {value} to get banned of the server. Default value : 6',
+                    inline: false,
+                },
+                {
+                    name: 'rr!ping',
+                    value: 'Returns the bot latency',
+                    inline: false,
+                }
+            ],
+            footer: {
+                text: "Last update " + diff.day + " days, " + diff.hour + " hours and " + diff.min + " minutes ago.",
+                icon_url: 'https://i.imgur.com/fsQhDnG.png',
+            }
+        };
+        message.channel.send({
+            embed: helpEmbed
+        });
     }
-
-
 });
 
+function dateDiff(date1, date2) {
+    var diff = {} // Initialize the return
+    var tmp = date2 - date1;
 
+    tmp = Math.floor(tmp / 1000); // Number of seconds between the 2 dates
+    diff.sec = tmp % 60;
+
+    tmp = Math.floor((tmp - diff.sec) / 60); // Number of minutes
+    diff.min = tmp % 60;
+
+    tmp = Math.floor((tmp - diff.min) / 60); // Number of hours
+    diff.hour = tmp % 24;
+
+    tmp = Math.floor((tmp - diff.hour) / 24); // Number of days left
+    diff.day = tmp;
+
+    return diff;
+}
 
 client.on("ready", () => {
     client.user.setPresence({
