@@ -2,7 +2,7 @@
 Very simple Russian Roulette Discord bot. Made for educational purposes.<br>
 [Invite link](https://discord.com/api/oauth2/authorize?client_id=728248054657974352&permissions=402766934&scope=bot)
 
-#How to get the bot working ?<br/>
+# How to get the bot working ?<br/>
 **0 -** Download this repository by clicking **Code** and **Download ZIP**. You must also have [Node.JS and Discord.js installed](https://discordjs.guide/preparations/) to get started.<br/>
 **1 -** Create a New Application in the [Discord Developers Portal](https://discord.com/developers/applications)<br/>
 **2 -** Go in the Bot section and click **Add Bot**<br/>
