@@ -93,6 +93,7 @@ client.on("message", async message => {
         }, 1500)
     } else if (command === 'ping') {
         message.channel.send(`Pong ! ${Math.round(client.ping)}ms`);
+        console.log("Ping command requested - " + Math.round(client.ping))
     } else if (command === 'help') {
         date2 = new Date();
         diff = dateDiff(date1, date2);
@@ -128,7 +129,63 @@ client.on("message", async message => {
         message.channel.send({
             embed: helpEmbed
         });
+        console.log("Help command requested")
+    } else if (command === "groupkick") {
+        if (!message.member.hasPermission(["KICK_MEMBERS"])) return message.channel.send("You do not have enough permissions to start a group roulette !")
+        var killed = 0;
+        var survived = 0;
+        var proba = 6;
+        const mentions = message.mentions.members.first(10);
+        if (!mentions) return message.channel.send("You have to mention people to start a groupkick roulette !");
+        var proba = Number(args[0]);
+        if (typeof proba != "number") {
+            message.channel.send("The probability is not valid and has been set to default (6).");
+            proba = Number(6);
+        }
+        if (proba < 2) {
+            message.channel.send("The given probability is too low and has been set to default (6).");
+            proba = Number(6);
+        }
+        message.mentions.members.forEach(member => {
+            message.channel.send(`**It is now <@${member.id}>'s turn.**`);
+            var kickable = 'True'
+            if (!message.guild.me.hasPermission('KICK_MEMBERS')) {
+                message.channel.send("** **");
+                message.channel.send(`I do not have enough permissions to kick <@${member.id}>, but he still can play !`);
+                kickable = 'False'
+            }
+            if (kickable == 'True') {
+                if (!member.kickable) {
+                    message.channel.send("** **");
+                    message.channel.send(`I do not have enough permissions to kick <@${member.id}>, but he still can play !`);
+                    kickable = 'False'
+                }
+            }
+            message.channel.send("**...**");
+
+            if (Math.floor(Math.random() * proba) == 0) {
+                if (kickable == 'True') {
+                    message.channel.send(`**<@${member.id}> lost ! He will be kicked out of the server in 10 seconds...**`)
+                    killed = killed + 1
+                    console.log(proba + " kick lose ID : " + member.id)
+                    setTimeout(function () {
+                        member.kick("You lost !")
+                    }, 10000)
+                } else {
+                    message.channel.send(`**<@${member.id}> lost ! Luckily for him, I'm too weak to kick him !**`)
+                    console.log(proba + " kick lose (no perms) ID : " + member.id)
+                    killed = killed + 1
+                }
+            } else {
+                message.channel.send(`**<@${member.id}> survived ! Good job !**`)
+                console.log(proba + " kick win ID : " + member.id);
+                survived = survived + 1
+            };
+
+        });
+        message.channel.send(`**The groupkick roulette started by ${message.member} is finally over. ${killed} people have (or should have) been kicked, and ${survived} people have survived.**`)
     }
+
 });
 
 function dateDiff(date1, date2) {
@@ -148,6 +205,11 @@ function dateDiff(date1, date2) {
     diff.day = tmp;
 
     return diff;
+}
+
+function sleep(seconds) {
+    var waitUntil = new Date().getTime() + seconds * 1000;
+    while (new Date().getTime() < waitUntil) true;
 }
 
 client.on("ready", () => {
