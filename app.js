@@ -1,13 +1,16 @@
 const Discord = require("discord.js");
+require('dotenv').config({
+	path: 'variables.env'
+});
 const {
 	Client,
 	Util
 } = require("discord.js");
 const client = new Discord.Client();
-const {
-	TOKEN,
-	PREFIX
-} = require("./config");
+const TOKEN = process.env.TOKEN
+const PREFIX = process.env.PREFIX
+const port = process.env.PORT || 3000;
+app.listen(port);
 const ms = require("ms");
 date1 = new Date();
 
