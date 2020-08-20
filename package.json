@@ -19,5 +19,8 @@
 	"bugs": {
 		"url": "https://github.com/Nathn/RouletteBot/issues"
 	},
-	"homepage": "https://github.com/Nathn/RouletteBot#readme"
+	"homepage": "https://github.com/Nathn/RouletteBot#readme",
+	"now": {
+		"dotenv": "variables.env.now"
+	}
 }

@@ -1,2 +1,5 @@
-exports.TOKEN = "YOUR_TOKEN_HERE"
+require('dotenv').config({
+	path: 'variables.env'
+});
+exports.TOKEN = process.env.TOKEN
 exports.PREFIX = "rr!"
