@@ -1,19 +1,22 @@
 {
-  "name": "roulettebot",
-  "version": "1.0.0",
-  "description": "Very simple Russian Roulette Discord bot. Made for educational purposes.<br>\r [Invite link](https://discord.com/api/oauth2/authorize?client_id=728248054657974352&permissions=402766934&scope=bot)",
-  "main": "app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/Nathn/RouletteBot.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/Nathn/RouletteBot/issues"
-  },
-  "homepage": "https://github.com/Nathn/RouletteBot#readme"
+	"name": "roulettebot",
+	"version": "1.0.0",
+	"description": "Very simple Russian Roulette Discord bot. Made for educational purposes.<br>\r [Invite link](https://discord.com/api/oauth2/authorize?client_id=728248054657974352&permissions=402766934&scope=bot)",
+	"main": "app.js",
+	"dependencies": {
+		"discord.js": "^12.2.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Nathn/RouletteBot.git"
+	},
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/Nathn/RouletteBot/issues"
+	},
+	"homepage": "https://github.com/Nathn/RouletteBot#readme"
 }
