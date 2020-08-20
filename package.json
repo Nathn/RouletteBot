@@ -4,7 +4,8 @@
 	"description": "Very simple Russian Roulette Discord bot. Made for educational purposes.<br>\r [Invite link](https://discord.com/api/oauth2/authorize?client_id=728248054657974352&permissions=402766934&scope=bot)",
 	"main": "app.js",
 	"dependencies": {
-		"discord.js": "^12.2.0"
+		"discord.js": "^12.2.0",
+		"ms": "2.1.2"
 	},
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1"
